@@ -37,10 +37,10 @@ public class ProductController {
     List<ProductModel> getProducts() throws IOException {
         log.info("ProductController getProducts");
         List<ProductModel> products = new ArrayList<>();
-        products.add(new ProductModel(1L, "prod1", "qwerty", 44.6, getImages()));
-        products.add(new ProductModel(1L, "prod1", "qwerty", 44.6, getImages()));
-        products.add(new ProductModel(1L, "prod1", "qwerty", 44.6, getImages()));
-        products.add(new ProductModel(1L, "prod1", "qwerty", 44.6, getImages()));
+        products.add(new ProductModel(1L, "prod1", "qwertyqwertyqwertyqwertyqwerty", 44.6, getImages()));
+        products.add(new ProductModel(2L, "prod2", "qwertyqwertyqwertyqwertyqwerty", 414.6, getImages()));
+        products.add(new ProductModel(3L, "prod3", "qwertyqwertyqwertyqwertyqwerty", 414.6, getImages()));
+        products.add(new ProductModel(4L, "prod4", "qwertyqwertyqwertyqwertyqwerty", 544.6, getImages()));
         return products;
     }
 
@@ -48,6 +48,13 @@ public class ProductController {
     public ResponseEntity<List<ProductModel>> allProducts() throws IOException {
         log.info("ProductController all");
         return ResponseEntity.ok(getProducts());
+    }
+
+    @GetMapping(path = "/getById")
+    public ResponseEntity<ProductModel> getProductById(@RequestParam("id") Long id) throws IOException {
+        log.info("ProductController getProductById");
+        ProductModel product = getProducts().stream().filter((p) -> p.getId() == id).findFirst().orElse(null);
+        return ResponseEntity.ok(product);
     }
 
     @GetMapping(path = "/image")
