@@ -20,9 +20,9 @@ public class ProductRepository {
                     rs.getString("name"),
                     rs.getString("description"),
                     rs.getDouble("price"),
-                    rs.getBytes("image1"),
-                    rs.getBytes("image2"),
-                    rs.getBytes("image3")
+                    rs.getString("image1"),
+                    rs.getString("image2"),
+                    rs.getString("image3")
             );
     private final JdbcTemplate jdbcTemplate;
 

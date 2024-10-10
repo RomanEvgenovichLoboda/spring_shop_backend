@@ -13,12 +13,12 @@ public class ProductModel {
     private String description;
     private double price;
 //    private byte[][] images;
-    private byte[] image1;
-    private byte[] image2;
-    private byte[] image3;
+    private String image1;
+    private String image2;
+    private String image3;
     @Override
     public String toString() {
         return "Name: " + name + ", Description: " + description + ", Price: " + price +
-                ", Image1: " + image1.length + ", Image2: " + image2.length + ", Image3: " + image3.length;
+                ", Image1: " + image1.length() + ", Image2: " + image2.length() + ", Image3: " + image3.length();
     }
 }

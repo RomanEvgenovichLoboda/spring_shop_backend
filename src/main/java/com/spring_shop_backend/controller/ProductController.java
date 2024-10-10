@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -39,6 +38,17 @@ public class ProductController {
         ProductModel product = productRepository.findById(id);
         return ResponseEntity.ok(product);
     }
+
+    @PostMapping(path = "/create")
+    public ResponseEntity<ProductModel> createProduct(@RequestBody ProductModel product) throws IOException {
+        log.info("ProductController createProduct");
+        System.out.println(product);
+        productRepository.save(product);
+        return ResponseEntity.ok(product);
+    }
+
+
+
 
     @GetMapping(path = "/image")
     public ResponseEntity<byte[]> getImage() throws IOException {
