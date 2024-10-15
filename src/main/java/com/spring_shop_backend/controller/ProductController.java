@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Locale;
 
 @CrossOrigin("*")
 @RestController
@@ -47,7 +48,13 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-
+    @GetMapping(path = "/findList")
+    public ResponseEntity<List<ProductModel>> findListProducts(@RequestParam("name") String name) throws IOException {
+        List<ProductModel> productList = productRepository.getAll();
+        List<ProductModel> sortedProducts = productList.stream().filter(e->e.getName().toLowerCase().contains(name.toLowerCase())).toList();
+        log.info("[FindList]:{}", sortedProducts);
+        return ResponseEntity.ok(sortedProducts);
+    }
 
 
     @GetMapping(path = "/image")
